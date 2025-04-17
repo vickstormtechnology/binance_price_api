@@ -10,17 +10,23 @@ export default async function handler(req, res) {
     }
 
     try {
-        const response = await fetch(`https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`);
+        const url = `https://api.binance.com/api/v3/ticker/price?symbol=${symbol}`;
+        console.log("Fetching URL:", url);  // 🔍 Debug
+
+        const response = await fetch(url);
+        console.log("Binance Status:", response.status); // 🔍 Debug
+
         if (!response.ok) {
-            return res.status(500).json({ error: 'Error fetching data from Binance' });
+            const errorText = await response.text(); // Read the error message from Binance
+            return res.status(500).json({ error: 'Error fetching data from Binance', binanceMessage: errorText });
         }
+
         const data = await response.json();
         res.status(200).json(data);
     } catch (error) {
         res.status(500).json({ error: 'Internal Server Error', details: error.message });
     }
 }
-
 
 
 //### TO TEST ON LOCAL MACHINE
