@@ -44,7 +44,7 @@ export default async function handler(req, res) {
 // ##
 // ##
 // ##
-//## TO DEPLOY TO VERCEL
+//## TO DEPLOY TO VERCEL PRODUCTION
 // Install Vercel CLI (if you haven’t already):
 
 // npm install -g vercel
@@ -53,4 +53,4 @@ export default async function handler(req, res) {
 
 // vercel
 
-// http://localhost:3000/api/price?symbol=BTCUSDT
+// https://binance-price-api-ashen.vercel.app/api/price?symbol=BTCUSDT
